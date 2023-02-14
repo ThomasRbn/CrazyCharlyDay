@@ -1,0 +1,8 @@
+{
+    "name": "iutnc/ccd",
+    "autoload": {
+        "psr-4": {
+            "ccd\\": "src/classes"
+        }
+    }
+}
