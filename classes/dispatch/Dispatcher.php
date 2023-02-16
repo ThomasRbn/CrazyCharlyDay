@@ -2,7 +2,9 @@
 
 namespace ccd\dispatch;
 
-use Exception;
+
+use ccd\action\ShowCatalogAction;
+use ccd\products\Catalogue;
 
 class Dispatcher
 {
@@ -13,27 +15,34 @@ class Dispatcher
         $this->action = $_GET['action'] ?? null;
     }
 
-    public function run(): ?string
-    {
-        if (isset($_GET['action'])) {
-            $affichage = "";
-            switch ($_GET['action']){
-                case "showProduct" :
-                    $action = new \ccd\action\ActionShowProduct();
-                    $affichage .= $action->execute();
-                    break;
-            }
-            return $affichage;
+    public function run(): void {
+        $action = match ($this->action) {
+              'show-catalog-action' => new ShowCatalogAction(new Catalogue())
+//            'signin' => new SigninAction(),
+//            'register' => new RegisterAction(),
+//            'logout' => new LogoutAction(),
+//            'display-episode-details' => new DisplayEpisodeDetailsAction(),
+//            'display-serie' => new DisplaySerieAction(),
+//            'accueil-catalogue' => new AccueilCatalogueAction(),
+//            'add-fav-series' => new AddFavSeriesAction(),
+//            'user-home-page' => new UserHomePageAction(),
+//            'gestion-utilisateur' => new GestionUtilisateurAction(),
+//            'update-episode-progress' => new UpdateEpisodeProgressAction(),
+//            'delete-fav-series' => new DeleteFavSeriesAction(),
+//            default => new DefaultAction(),
+        };
+        try {
+            $this->renderPage($action->execute());
+        } catch (Exception $e) {
+            $this->renderPage($e->getMessage());
         }
-        return null;
-//        try {
-//            $this->renderPage($action->execute());
-//        } catch (Exception $e) {
-//            $this->renderPage($e->getMessage());
-//        }
     }
 
-
+    /**
+     * Method that return string corresponding to the main content to show to user
+     * @param string $html
+     * @return void
+     */
     private function renderPage(string $html): void
     {
         echo $html;
