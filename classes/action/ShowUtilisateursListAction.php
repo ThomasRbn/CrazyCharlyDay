@@ -32,6 +32,7 @@ class ShowUtilisateursListAction extends Action
     <ul>
       <li><a href="?action=ShowCatalogAction">Accueil</a> </li>
       <li><a href="?action=showUtilisateurList">Montrer la liste des utilisateurs</a></li>
+      <li><a href="?action=gestionCompte">Gérer son compte</a> </li>
       <li><a href="?action=afficherPanier">Panier</a> </li>
       <li><a href="?action=logout">Déconnexion</a></li>
       

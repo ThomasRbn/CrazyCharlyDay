@@ -63,6 +63,18 @@ class GestionCompteAction extends Action
 
     private function getForm($infoUser): string{
         return  <<<END
+        <header>
+          <img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%" >
+          <nav>
+            <ul>
+              <li><a href="?action=ShowCatalogAction">Accueil</a> </li>
+              <li><a href="?action=showUtilisateurList">Montrer la liste des utilisateurs</a></li>
+              <li><a href="?action=gestionCompte">Gérer son compte</a> </li>
+              <li><a href="?action=afficherPanier">Panier</a> </li>
+              <li><a href="?action=logout">Déconnexion</a></li>
+            </ul>
+          </nav>
+        </header> 
             <h3>Vous pouvez ici changer vos informations</h3>
             <div class="enteteAccueil">
             <form method="POST" action="?action=gestionCompte">
