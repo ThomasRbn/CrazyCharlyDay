@@ -1,10 +1,11 @@
 <?php
 
-namespace netvod\db;
-use PDO;
-ConnexionFactory::setConfig( 'db.config.ini' );
+namespace ccd\db;
 
-class ConnexionFactory{
+use PDO;
+ConnectionFactory::setConfig( 'db.config.ini' );
+
+class ConnectionFactory{
     public static $db = null;
     public static $config =[];
 
