@@ -33,7 +33,6 @@ class GestionCompteAction extends Action
 
                 // Filtre les entrées
                 $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
-                echo $nom;
                 $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_STRING);
                 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
                 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
@@ -59,7 +58,6 @@ class GestionCompteAction extends Action
                 // Vérification si le bouton visant à modifié les genres de l'utlisateur est appuyé
             }
         }
-        echo "ne devrait pas aller ici, le dire a julie";
         return "";
     }
 

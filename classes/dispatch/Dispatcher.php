@@ -9,9 +9,14 @@ use ccd\action\LogoutAction;
 use ccd\action\RegisterAction;
 use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
+use ccd\action\ShowUtilisateursListAction;
+use ccd\action\ShowUtilisateurAction;
+use ccd\action\ChangeUtilisateurAction;
 use ccd\action\SigninAction;
+use ccd\action\AfficherPanierAction;
 use ccd\catalogue\Catalogue;
 use ccd\Panier\Panier;
+use ccd\render\PanierRenderer;
 use Exception;
 
 class Dispatcher
@@ -44,10 +49,15 @@ class Dispatcher
             'showProduct' => new ShowProductAction(),
             'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
             'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
+            'ajouterAuPanier' => new AjouterAuPanierAction(),
+            'afficherPanier' => new AfficherPanierAction(),
             'signin' => new SigninAction(),
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
             'gestionCompte' => new GestionCompteAction(),
+            'showUtilisateurList' => new ShowUtilisateursListAction(),
+            'showUtilisateur' => new ShowUtilisateurAction(),
+            'changeUtilisateur' => new ChangeUtilisateurAction(),
             default => (isset($_SESSION['email'])) ? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
         };
         try {
