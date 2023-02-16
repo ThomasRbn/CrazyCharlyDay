@@ -19,7 +19,7 @@ class Product
     private string $latitude;
     private string $longitude;
 
-    public function __construct($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude, $quantite)
+    public function __construct($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude)
     {
         $this->id = $id;
         $this->categorie = $categorie;
@@ -32,7 +32,6 @@ class Product
         $this->distance = $distance;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
-        $this->quantite = $quantite;
     }
 
     public static function displayProduit(): ?string

@@ -27,9 +27,9 @@ class Catalogue
 
         $this->produits = $this->retrieveProduitList($resultset);
 
-        if (isset($this->filtre)) {
-            return $this->filtre->filtrer($this->produits);
-        }
+//        if (isset($this->filtre)) {
+//            return $this->filtre->filtrer($this->produits);
+//        }
 
         return $this->produits;
     }
@@ -52,7 +52,7 @@ class Catalogue
     public function __get($attname)
     {
         if (property_exists($this, $attname)) return $this->$attname;
-        throw new InvalidPropertyNameException("Nom d'attribut invalide : $attname");
+       // throw new InvalidPropertyNameException();
     }
 
 }
