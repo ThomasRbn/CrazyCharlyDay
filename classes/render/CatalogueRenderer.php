@@ -17,22 +17,6 @@ class CatalogueRenderer implements Renderer
 
     public function render(): string
     {
-       /* $html = '<div id="catalog-container">';
-        try {
-            $nom = $this->catalogue->__get("nom");
-        } catch (InvalidPropertyNameException $e) {
-            $nom = "CATALOG";
-        }
-        $html .= '<div><label id="title">' . $nom . '</label></div>';
-        $html .= '<div id="catalog">';
-
-        foreach ($this->catalogue->__get("produits") as $produit) {
-            $renderer = new RenderProduit($produit);
-            $html .= $renderer->render();
-        }
-        $html .= '</div></div>';
-        return $html; */
-
         // Récupération du numéro de page à afficher
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
@@ -67,9 +51,15 @@ class CatalogueRenderer implements Renderer
         // Affichage des liens de pagination
         $html .= '<div class="pagination">';
         $nb_pages = ceil(count($produits) / $produits_par_page);
+        if ($page > 1) {
+            $html .= '<a class="page" href="?action=show-catalog-action&page=' . ($page - 1) . '">&#8249;</a>';
+        }
         for ($i = 1; $i <= $nb_pages; $i++) {
             $active = $i == $page ? ' active' : '';
             $html .= '<a class="page' . $active . '" href="?action=show-catalog-action&page=' . $i . '">' . $i . '</a>';
+        }
+        if ($page < $nb_pages) {
+            $html .= '<a class="page" href="?action=show-catalog-action&page=' . ($page + 1) . '">&#8250;</a>';
         }
         $html .= '</div> </div>';
 
