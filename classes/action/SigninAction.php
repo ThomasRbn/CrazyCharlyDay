@@ -54,6 +54,7 @@ class SigninAction extends Action
     {
         return <<<END
                 <div class="enteteAccueil">
+                <img src="./img/logoCC.jpg" width="50%" height="50%" >
                 <form method="post" action="?action=signin">
                         <label> Email :  <br><input type="email" name="email" placeholder="<email>"> </label>
                         <label> Mot de passe :  <br><input type="password" name="password" placeholder = "<mot de passe>"> </label>
