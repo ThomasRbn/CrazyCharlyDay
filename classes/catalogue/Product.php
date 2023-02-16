@@ -103,6 +103,14 @@ class Product
         return null;
     }
 
+    // getter magique
+    public function __get($name)
+    {
+        $method = 'get' . ucfirst($name);
+        $this->$name = $this->$method();
+        return $this->$name;
+    }
+
     public function getImage(){
         return 'img/' . $this->id . '.jpg';
     }
