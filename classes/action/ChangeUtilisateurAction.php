@@ -10,6 +10,7 @@ class ChangeUtilisateurAction extends Action
 
     public function execute(): string
     {
+        if(($_SESSION["status"])!==0)header("Location: index.php");
 
         $db = ConnectionFactory::makeConnection();
         $email = $_GET['utilisateur'];
