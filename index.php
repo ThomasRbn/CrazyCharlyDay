@@ -3,11 +3,10 @@
 //Configuration
 require_once 'vendor/autoload.php';
 
-use ccd\dispatch\Dispatcher;
 use ccd\db\ConnectionFactory;
 
 session_start();
-ConnectionFactory::setConfig('./db.config.ini');
+ConnectionFactory::setConfig('./classes/db/db.config.ini');
 
 
 //Affichage
