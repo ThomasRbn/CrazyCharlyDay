@@ -37,12 +37,11 @@ class Dispatcher
             $catalog->definirTri($tri);
             $action = new ShowCatalogAction($catalog);
         } else {
+            // $this->renderPage($errorMessage);
             return;
         }
         return $action;
     }
-
-
 
     public function run(): void
     {
