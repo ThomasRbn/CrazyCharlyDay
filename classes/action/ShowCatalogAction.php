@@ -24,8 +24,9 @@ class ShowCatalogAction extends Action
         $renderer = new CatalogueRenderer($this->catalogue);
 
         $html = <<<END
-                
-            END;
+END;
+
+
         $html .= $renderer->render();
 
         return $html;
