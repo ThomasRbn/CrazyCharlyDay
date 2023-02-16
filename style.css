@@ -90,7 +90,7 @@ form input[type="submit"]:hover {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: #f5f5f5;
+    background-color: #29524e;
 }
 
 #accueil, .enteteaccueil {
@@ -101,6 +101,24 @@ form input[type="submit"]:hover {
     color: white;
 }
 
+.page .active{
+    color: black;
+}
+
+label {
+    color: white;
+}
+
+button {
+    background-color: #3E8E41;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 #formInscr {
     padding-top: 30px;
     display: grid;
@@ -109,7 +127,47 @@ form input[type="submit"]:hover {
     grid-gap: 20px;
 }
 
-.header {
+
+/*.header {
     display: grid;
     grid-template-columns: 1fr 1fr;
+} */
+
+form {
+    margin-top: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #095228;
+    color: white;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+nav li:first-child {
+    margin-left: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
 }

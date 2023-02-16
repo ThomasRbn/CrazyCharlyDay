@@ -5,13 +5,10 @@ use ccd\catalogue\Catalogue;
 use ccd\db\ConnectionFactory;
 
 
-class ShowUtilisateursListAction extends Action
+class RechercheCatalogAction extends Action
 {
 
-    /**
-     * @param Catalogue $catalogue
-     * Constructeur paramétré
-     */
+
     public function __construct()
     {
         parent::__construct();
@@ -19,9 +16,9 @@ class ShowUtilisateursListAction extends Action
 
     public function execute(): string
     {
-        if(($_SESSION["status"])!==0)header("Location: index.php");
+
         $connection = ConnectionFactory::makeConnection();
-        $resultset = $connection->prepare("SELECT * FROM user");
+        $resultset = $connection->prepare("SELECT * FROM produit WHERE nom LIKE '%{$_POST['recherche']}%'");
         $resultset->execute();
         $html="";
         while ($row = $resultset->fetch()) {
@@ -34,19 +31,27 @@ class ShowUtilisateursListAction extends Action
       <li><a href="?action=showUtilisateurList">Montrer la liste des utilisateurs</a></li>
       <li><a href="?action=afficherPanier">Panier</a> </li>
       <li><a href="?action=logout">Déconnexion</a></li>
-      
     </ul>
   </nav>
 </header> 
-<div class="utilisateurList">
+<div class="produit">
+
             <div class="description">
-                <a href="?action=showUtilisateur&utilisateur={$row['email']}"><h3>{$row['nom']}</h3></a>
+                <a href="?action=showProduit&produit={$row['id']}"><h3>{$row['nom']}</h3></a>
+                <p>{$row['description']}</p>
+            </div>
+            <div class="image">
+                <img src="img/{$row['id']}.jpg" alt="image">
+            </div>
+            <div class="prix">
+                <p>{$row['prix']}€</p>
             </div>
         </div>
 END;
         }
         $connection = null;
         return $html;
+
     }
 
 

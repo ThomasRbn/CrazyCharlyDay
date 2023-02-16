@@ -37,7 +37,7 @@ class CatalogueRenderer implements Renderer
 
         $html = '<body id="accueil">';
         $html .= '<div id="header">';
-        $html .= '<img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%">';
+        //$html .= '<img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%">';
         $html .= '<div id="menu" style="grid-column: 2">';
         $db = ConnectionFactory::makeConnection();
         $query = $db->prepare("SELECT * FROM user WHERE email = :email");
@@ -45,7 +45,6 @@ class CatalogueRenderer implements Renderer
         $user = $query->fetch();
         if (isset($_SESSION['email'])) {
             $html .= '<p style="color: white">Bonjour ' . $user['prenom'] . ' ' . $user['nom'] . '</p>';
-            $html .= '<a style="color: white" href="?action=logout">Déconnexion</a>';
         }
         $html .= '<a href="?action=afficherPanier">Panier</a>';
         $html .= '</div>';

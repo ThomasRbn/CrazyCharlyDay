@@ -24,6 +24,22 @@ class ShowCatalogAction extends Action
         $renderer = new CatalogueRenderer($this->catalogue);
 
         $html = <<<END
+
+<header>
+  <img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%">
+  <nav>
+    <ul>
+      <li><a href="?action=ShowCatalogAction">Accueil</a> </li>
+      <li><a href="?action=showUtilisateurList">Montrer la liste des utilisateurs</a></li>
+      <li><a href="?action=afficherPanier">Panier</a> </li>
+      <li><a href="?action=logout">Déconnexion</a></li>
+    </ul>
+  </nav>
+</header> 
+<form method="post" action="?action=RechercheCatalog">
+      <input name="recherche" type="text" placeholder="Recherche...">
+      <button type="submit">Chercher</button>
+    </form>
 END;
 
 
