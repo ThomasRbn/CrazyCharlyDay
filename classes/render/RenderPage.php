@@ -10,9 +10,9 @@ class RenderPage implements Renderer
     {
         $dispatcher = new Dispatcher();
         return <<<HTML
-        <main>
+        <p>Toto</p>
         {$dispatcher->run()}
-        </main>
+        <a href="?action=showProduct&produit=1">Produit</a>
         HTML;
     }
 
