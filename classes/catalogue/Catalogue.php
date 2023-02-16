@@ -27,6 +27,10 @@ class Catalogue
 
         $this->produits = $this->retrieveProduitList($resultset);
 
+        if (isset($this->filtre)) {
+            return $this->filtre->filtrer($this->produits);
+        }
+
         return $this->produits;
     }
 
