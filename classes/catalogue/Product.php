@@ -80,7 +80,12 @@ class Product
     }
 
     public static function loadProduct(): ?Product {
-        $idproduit = $_GET['produit'];
+        $idproduit=null;
+        if(isset($_GET['produit'])) {
+            $idproduit = $_GET['produit'];
+        }else{
+            $idproduit=$_POST['produit'];
+        }
         $db = ConnectionFactory::makeConnection();
         $stmt = $db->prepare('SELECT * FROM produit WHERE id = ?');
         $stmt->bindParam(1, $idproduit);
@@ -138,18 +143,23 @@ class Product
     }
     public function updateProduit() : void
 {
-    'update produit set
-                categorie ='. $this->categorie.',
-                nom = '.$this->nom.',
-                prix = '.$this->prix.',
-                poids = '.$this->poids.',
-                description ='. $this->description.',
-                detail = '.$this->detail.',
-                lieu = '.$this->lieu.',
-                distance = '.$this->distance.',
-                latitude = '.$this->latitude.',
-                longitude = '.$this->longitude.',
-                where id='.$this->id.';';
+    $connection=ConnectionFactory::makeConnection();
+
+$requete = <<<END
+update produit set
+                categorie ='{$this->categorie}',
+                nom = '{$this->nom}',
+                prix = {$this->prix},
+                poids = {$this->poids},
+                description ='{$this->description}',
+                detail = '{$this->detail}',
+                lieu = '{$this->lieu}',
+                distance = {$this->distance},
+                latitude = {$this->latitude},
+                longitude = {$this->longitude}
+                where id={$this->id}
+END;
+    $connection->exec($requete);
 
 }
 public function setParam($propriete,$valeur){

@@ -9,51 +9,52 @@ class RenderModificationProduit implements Renderer
     public function render(): string
     {
         $produit=Product::loadProduct();
+        $produit->updateProduit();
 
         return "<html >
 <head >
 <title > Formulaire pour ajouter un tableau à la superglobale $_POST en PHP </title >
 </head >
 <body >
-<h1 > Ajouter un tableau à la superglobale $_POST en PHP </h1 >
-<form method = 'post' >
+
+<form method = 'post' action=?action=showProduct&produit=".$produit->getId().">
 
 <label for='Image' > Image :</label >
-<input type = 'text' name = 'Image' id = 'Image' value='{$produit->getImage()}' ><br >
+<input type = 'text' name = 'ImageV' id = 'ImageV' value='{$produit->getImage()}' ><br >
 
 <label for='nom' > Nom :</label >
-<input type = 'text' name = 'nom' id = 'nom' value='{$produit->getNom()}' ><br >
+<input type = 'text' name = 'nomV' id = 'nomV' value='{$produit->getNom()}' ><br >
 
 <label for='categorie' >Categorie : </label >
-<input type = 'text' name = 'categorie' id = 'categorie' value='{$produit->getCategorie()}' ><br >
+<input type = 'text' name = 'categorieV' id = 'categorieV' value='{$produit->getCategorie()}' ><br >
 
 <label for='prix' > Prix :</label >
-<input type = 'text' name = 'prix' id = 'prix' value='{$produit->getPrix()}' ><br >
+<input type = 'text' name = 'prixV' id = 'prixV' value='{$produit->getPrix()}' ><br >
 
 <label for='poids' > Poids :</label >
-<input type = 'text' name = 'poids' id = 'poids' value='{$produit->getPoids()}' ><br >
+<input type = 'text' name = 'poidsV' id = 'poidsV' value='{$produit->getPoids()}' ><br >
 
 <label for='description' > Description :</label >
-<input type = 'text' name = 'description' id = 'description' value='{$produit->getDescription()}' ><br >
+<input type = 'text' name = 'descriptionV' id = 'descriptionV' value='{$produit->getDescription()}' ><br >
  
 <label for='detail' > Detail :</label >
-<input type = 'text' name = 'detail' id = 'detail' value='{$produit->getDetail()}' ><br >
+<input type = 'text' name = 'detailV' id = 'detailV' value='{$produit->getDetail()}' ><br >
  
  <label for='lieu' > Lieu :</label >
-<input type = 'text' name = 'distance' id = 'distance' value='{$produit->getLieu()}' ><br >
+<input type = 'text' name = 'Lieu' id = 'Lieu' value='{$produit->getLieu()}' ><br >
  
- <label for='distance' > Description :</label >
-<input type = 'text' name = 'distance' id = 'distance' value='{$produit->getDistance()}' ><br >
+ <label for='distance' > Distance :</label >
+<input type = 'text' name = 'distanceV' id = 'distanceV' value='{$produit->getDistance()}' ><br >
 
 <label for='latitude' > Latitude :</label >
-<input type = 'text' name = 'latitude' id = 'latitude' value='{$produit->getLatitude()}' ><br >
+<input type = 'text' name = 'latitudeV' id = 'latitudeV' value='{$produit->getLatitude()}' ><br >
 
 <label for='longitude' > Longitude :</label >
-<input type = 'text' name = 'longitude' id = 'longitude' value='{$produit->getLongitude()}' ><br >
+<input type = 'text' name = 'longitudeV' id = 'longitudeV' value='{$produit->getLongitude()}' ><br >
  
-<input type = "submit" value = "Ajouter le tableau à la superglobale $_POST" >
+<input type = 'submit' value = 'valider' >
 </form >
 </body >
-</html >"
+</html >";
 }
 }

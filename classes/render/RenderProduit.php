@@ -15,17 +15,25 @@ class RenderProduit implements Renderer
 
     public function render(): string
     {
+
+        $user = "";
+        $ide=$this->produit->getId();
+
+        if (isset($_SESSION['status']) && $_SESSION['status'] == 0) {
+            $user = "<form method=post action=?action=modifier-produit&produit={$ide}>
+<input type = submit value = modifier > </form>";
+        }
         $html = <<<HTML
         <div class="produit" style="text-align: center">
-            <div class="image">
+                    <div class="image">
                 <img src="{$this->produit->getImage()}" alt="{$this->produit->getNom()}" width="30%" height="30%">
             </div>
-            <div class="description">
+            < class="description">
                 <h2>{$this->produit->getNom()}</h2>
                 <p>{$this->produit->getDescription()}</p>
-                <p>{$this->produit->getPrix()} €</p>
-            </div>
-        
+                <p>{$this->produit->getPrix()}</p>
+              $user
+        </div>
         HTML;
 
         if (isset($_SESSION['email'])) {
