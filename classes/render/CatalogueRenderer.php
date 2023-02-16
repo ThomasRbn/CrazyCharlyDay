@@ -50,7 +50,7 @@ class CatalogueRenderer implements Renderer
 
             if (isset($_SESSION['email'])) {
             // Ajout du formulaire pour chaque produit
-            $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
+            $html .= '<form style="justify-content: center" method="post" action="?action=ajouter-au-panier-action">';
             $html .= '<input type="hidden" name="id" value="' . $produit->getId() . '">';
             $html .= '<label>Quantité/Poids :</label>';
             $html .= '<input type="number" name="quantity" value="1">';
@@ -61,7 +61,7 @@ class CatalogueRenderer implements Renderer
             else
             {
                 // Ajout du formulaire pour chaque produit
-                $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
+                $html .= '<form style="justify-content: center" method="post" action="?action=ajouter-au-panier-action">';
                 $html .= '<input type="hidden" name="id" value="' . $produit->getId() . '">';
                 $html .= '<label>Quantité/Poids :</label>';
                 $html .= '<input type="number" name="quantity" value="1">';
