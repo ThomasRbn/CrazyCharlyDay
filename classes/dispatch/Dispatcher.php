@@ -43,10 +43,7 @@ class Dispatcher
         if (isset($_GET['action'])) {
             $action = match ($this->action) {
                 'showProduct' => new ShowProductAction(),
-                'show-catalog-action',
-                'show-catalog-action&page=1',
-                'show-catalog-action&page=2',
-                'show-catalog-action&page=3' => new ShowCatalogAction(new Catalogue()),
+                'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
                 'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
                 'signin' => new SigninAction(),
                 'register' => new RegisterAction(),

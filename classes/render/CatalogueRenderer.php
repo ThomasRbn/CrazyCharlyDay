@@ -42,10 +42,13 @@ class CatalogueRenderer implements Renderer
         $produits = $this->catalogue->__get("produits");
 
 
+
+
         // Affichage de la liste des produits pour la page courante
         for ($i = $debut; $i < $fin && $i < count($produits); $i++) {
             $produit = $produits[$i];
 
+            if (isset($_SESSION['email'])) {
             // Ajout du formulaire pour chaque produit
             $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
             $html .= '<input type="hidden" name="id" value="' . $produit->getId() . '">';
@@ -53,6 +56,19 @@ class CatalogueRenderer implements Renderer
             $html .= '<input type="number" name="quantity" value="1">';
             $html .= '<input type="submit" value="Ajouter au panier">';
             $html .= '</form>';
+
+            }
+            else
+            {
+                // Ajout du formulaire pour chaque produit
+                $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
+                $html .= '<input type="hidden" name="id" value="' . $produit->getId() . '">';
+                $html .= '<label>Quantité/Poids :</label>';
+                $html .= '<input type="number" name="quantity" value="1">';
+                $html .= '<input type="submit" value="Ajouter au panier" formaction="?action=ajouterAuPanier">';
+                $html .= '</form>';
+
+            }
 
 
             $renderer = new RenderProduitCatalogue($produit);
