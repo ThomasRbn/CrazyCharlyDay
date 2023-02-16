@@ -90,7 +90,10 @@ Crazy Charly Day 16 Fevrier 2023
     les commentaires laissés par les utilisateurs en les modifiant si besoin.
 
 
-## Fonctionalités en cours 
+## Fonctionalités en cours
+Pour suivre les fonctionalités en temps réél le gdoc
+'https://docs.google.com/document/d/1lUdBzjk6A23MR3HgfgZKLLIFJ3C5nZun6jOG-R95mro/edit?usp=sharing'
+
 Note : On met le nom/numero de la fonctionalité et l'iteration à coté.
 ### Iteration en cours: Iteration 1
 
