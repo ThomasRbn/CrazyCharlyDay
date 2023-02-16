@@ -20,8 +20,11 @@ class Dispatcher
     public function run(): void
     {
         $action = match ($this->action) {
-            'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
             'showProduct' => new ShowProductAction(),
+              'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
+              'show-catalog-action&page=1' => new ShowCatalogAction(new Catalogue()),
+              'show-catalog-action&page=2' => new ShowCatalogAction(new Catalogue()),
+              'show-catalog-action&page=3' => new ShowCatalogAction(new Catalogue()),
 //            'signin' => new SigninAction(),
 //            'register' => new RegisterAction(),
 //            'logout' => new LogoutAction(),
