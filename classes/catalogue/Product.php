@@ -122,4 +122,23 @@ class Product
     {
         return $this->lieu;
     }
+    public function updateProduit() : void
+{
+    'update produit set
+                categorie ='. $this->categorie.',
+                nom = '.$this->nom.',
+                prix = '.$this->prix.',
+                poids = '.$this->poids.',
+                description ='. $this->description.',
+                detail = '.$this->detail.',
+                lieu = '.$this->lieu.',
+                distance = '.$this->distance.',
+                latitude = '.$this->latitude.',
+                longitude = '.$this->longitude.',
+                where id='.$this->id.';';
+
+}
+public function setParam($propriete,$valeur){
+        $this->$propriete=$valeur;
+}
 }
