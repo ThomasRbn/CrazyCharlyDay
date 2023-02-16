@@ -17,6 +17,30 @@ class CatalogueRenderer implements Renderer
 
     public function render(): string
     {
+       $html = '<div id="catalog-container">';
+        try {
+            $nom = $this->catalogue->__get("nom");
+        } catch (InvalidPropertyNameException $e) {
+            $nom = "CATALOG";
+        }
+        $html .= '<div><label id="title">' . $nom . '</label></div>';
+        $html .= '<div id="catalog">';
+
+        foreach ($this->catalogue->__get("produits") as $produit) {
+            $renderer = new RenderProduit($produit);
+            $html .= $renderer->render();
+
+            // Ajout du formulaire pour chaque produit
+            $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
+            $html .= '<input type="hidden" name="id" value="' . $produit->getId() . '">';
+            $html .= '<label>Quantité/Poids :</label>';
+            $html .= '<input type="number" name="quantity" value="1">';
+            $html .= '<input type="submit" value="Ajouter au panier">';
+            $html .= '</form>';
+        }
+        $html .= '</div></div>';
+        return $html;
+
         // Récupération du numéro de page à afficher
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 

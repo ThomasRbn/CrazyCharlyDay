@@ -12,6 +12,7 @@ class Product
     private string $nom;
     private string $prix;
     private string $poids;
+    private int $quantite;
     private string $description;
     private string $detail;
     private string $lieu;
@@ -19,7 +20,7 @@ class Product
     private string $latitude;
     private string $longitude;
 
-    public function __construct($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude)
+    public function __construct($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude, $quantite)
     {
         $this->id = $id;
         $this->categorie = $categorie;
@@ -118,11 +119,16 @@ class Product
         return $this->nom;
     }
 
+    public function getCategorie(){
+        return $this->categorie;
+    }
+
     public function getDescription(){
         return $this->description;
     }
 
-    public function getPrix(){
+    public function getPrix()
+    {
         return $this->prix;
     }
 
@@ -149,4 +155,19 @@ class Product
 public function setParam($propriete,$valeur){
         $this->$propriete=$valeur;
 }
+
+    public function getQuantite()
+    {
+        return $this->quantite;
+    }
+
+    public function getPoids()
+    {
+        return $this->poids;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }
