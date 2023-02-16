@@ -10,8 +10,10 @@ use ccd\action\RegisterAction;
 use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
 use ccd\action\SigninAction;
+use ccd\action\AfficherPanierAction;
 use ccd\catalogue\Catalogue;
 use ccd\Panier\Panier;
+use ccd\render\PanierRenderer;
 use Exception;
 
 class Dispatcher
@@ -32,11 +34,12 @@ class Dispatcher
             $catalog->definirTri($tri);
             $action = new ShowCatalogAction($catalog);
         } else {
-            // $this->renderPage($errorMessage);
             return;
         }
         return $action;
     }
+
+
 
     public function run(): void
     {
@@ -44,6 +47,8 @@ class Dispatcher
             'showProduct' => new ShowProductAction(),
             'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
             'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
+            'ajouterAuPanier' => new AjouterAuPanierAction(),
+            'afficherPanier' => new AfficherPanierAction(),
             'signin' => new SigninAction(),
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
