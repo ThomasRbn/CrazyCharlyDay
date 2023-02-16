@@ -17,7 +17,7 @@ class CatalogueRenderer implements Renderer
 
     public function render(): string
     {
-       $html = '<div id="catalog-container">';
+       /* $html = '<div id="catalog-container">';
         try {
             $nom = $this->catalogue->__get("nom");
         } catch (InvalidPropertyNameException $e) {
@@ -26,10 +26,12 @@ class CatalogueRenderer implements Renderer
         $html .= '<div><label id="title">' . $nom . '</label></div>';
         $html .= '<div id="catalog">';
 
-        echo "hihi";
-
-
+        foreach ($this->catalogue->__get("produits") as $produit) {
+            $renderer = new RenderProduit($produit);
+            $html .= $renderer->render();
+        }
         $html .= '</div></div>';
+        return $html; */
 
         // Récupération du numéro de page à afficher
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -55,24 +57,11 @@ class CatalogueRenderer implements Renderer
 
 
         // Affichage de la liste des produits pour la page courante
-//        for ($i = $debut; $i < $fin && $i < count($produits); $i++) {
-//            $produit = $produits[$i];
-//            $renderer = new RenderProduit($produit);
-//            $html .= $renderer->render();
-//        }
-        $id = 1;
-        foreach ($this->catalogue->__get("produits") as $produit) {
-            $html .= <<<HTML
-            <div class="produit">
-                <div class="image">
-                    <img width = 20% height = 20% src="{$produit->getImage()}" alt="{$produit->getNom()}">
-                </div>
-                <div class="description">
-                    <a href="?action=showProduct&produit={$id}"><h2>{$produit->getNom()}</h2></a>
-                </div>
-            </div>
-            HTML;
-            $id++;
+        for ($i = $debut; $i < $fin && $i < count($produits); $i++) {
+            $produit = $produits[$i];
+            $renderer = new RenderProduit($produit);
+            $html .= $renderer->render();
+
         }
 
         // Affichage des liens de pagination
@@ -82,7 +71,7 @@ class CatalogueRenderer implements Renderer
             $active = $i == $page ? ' active' : '';
             $html .= '<a class="page' . $active . '" href="?action=show-catalog-action&page=' . $i . '">' . $i . '</a>';
         }
-        $html .= '</div>';
+        $html .= '</div> </div>';
 
         return $html;
     }

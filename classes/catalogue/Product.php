@@ -117,4 +117,9 @@ class Product
     public function getPrix(){
         return $this->prix;
     }
+
+    public function getLocalisation()
+    {
+        return $this->lieu;
+    }
 }
