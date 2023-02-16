@@ -62,6 +62,7 @@ class Dispatcher
             'showUtilisateurList' => new ShowUtilisateursListAction(),
             'showUtilisateur' => new ShowUtilisateurAction(),
             'changeUtilisateur' => new ChangeUtilisateurAction(),
+            'modifier-produit' => new MiseAJourProduitAction(),
             'ajouter-produit' => new AjouterProduitAction(),
             default => (isset($_SESSION['email'])) ? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
         };
