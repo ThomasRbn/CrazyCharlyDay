@@ -10,6 +10,7 @@ class ChangeUtilisateurAction extends Action
 
     public function execute(): string
     {
+        if(($_SESSION["status"])!==0)header("Location: index.php");
 
         $db = ConnectionFactory::makeConnection();
         $email = $_GET['utilisateur'];
@@ -20,8 +21,8 @@ class ChangeUtilisateurAction extends Action
 
 
         if (isset($_POST['modifierUser'])) { // GET : Affichage du formulaire
-
-            return $this->getForm($infoUser);
+            ($infoUser['status']==0)? $admin = '<input type="checkbox" id="status" name="status" checked>': $admin = '<input type="checkbox" id="status" name="status" >';
+            return $this->getForm($infoUser,$admin);
         } else { // POST : Traitement du formulaire
             // Vérification si le bouton visant à modifié les information de l'utlisateur est appuyé
 
@@ -33,7 +34,7 @@ class ChangeUtilisateurAction extends Action
         return "";
         }
 
-    private function getForm($row): string{
+    private function getForm($row,$admin): string{
             return <<<END
 <div class="utilisateur">
             <div class="description">
@@ -42,13 +43,13 @@ class ChangeUtilisateurAction extends Action
                 <label for="email">Email</label><input type="email" name="email" id="email" value="{$row['email']}">
                 <label for="nom">Nom</label><input type="text" name="nom" id="nom" value="{$row['nom']}">
                 <label for="prenom">Prenom</label><input type="text" name="prenom" id="prenom" value="{$row['prenom']}" >
-                <label for="status">Status</label><input type="text" name="status" id="status" value="{$row['status']}" >
+                <label for="status">Status: </label>$admin
                 <input type="submit" value="Valider" name="validerModifUser">
             </div>
         </div>
 END;
 
-
+//                <label for="status">Status</label><input type="text" name="status" id="status" value="{$row['status']}" >
     }
 }
 /*

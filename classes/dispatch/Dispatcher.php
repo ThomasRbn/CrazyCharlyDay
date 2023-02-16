@@ -6,6 +6,8 @@ namespace ccd\dispatch;
 use ccd\action\AjouterAuPanierAction;
 use ccd\action\GestionCompteAction;
 use ccd\action\LogoutAction;
+use ccd\action\MiseAJourProduitAction;
+use ccd\action\ModificationProduit\MiseAJourDescriptionAction;
 use ccd\action\RegisterAction;
 use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
@@ -55,6 +57,7 @@ class Dispatcher
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
             'gestionCompte' => new GestionCompteAction(),
+            'modifier-produit' => new MiseAJourProduitAction(),
             'showUtilisateurList' => new ShowUtilisateursListAction(),
             'showUtilisateur' => new ShowUtilisateurAction(),
             'changeUtilisateur' => new ChangeUtilisateurAction(),

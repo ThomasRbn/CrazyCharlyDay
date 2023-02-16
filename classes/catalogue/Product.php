@@ -6,6 +6,7 @@ use ccd\db\ConnectionFactory;
 
 class Product
 {
+
     private string $id;
     private string $categorie;
     private string $nom;
@@ -79,7 +80,12 @@ class Product
     }
 
     public static function loadProduct(): ?Product {
-        $idproduit = $_GET['produit'];
+        $idproduit=null;
+        if(isset($_GET['produit'])) {
+            $idproduit = $_GET['produit'];
+        }else{
+            $idproduit=$_POST['produit'];
+        }
         $db = ConnectionFactory::makeConnection();
         $stmt = $db->prepare('SELECT * FROM produit WHERE id = ?');
         $stmt->bindParam(1, $idproduit);
@@ -135,6 +141,30 @@ class Product
     {
         return $this->lieu;
     }
+    public function updateProduit() : void
+{
+    $connection=ConnectionFactory::makeConnection();
+
+$requete = <<<END
+update produit set
+                categorie ='{$this->categorie}',
+                nom = '{$this->nom}',
+                prix = {$this->prix},
+                poids = {$this->poids},
+                description ='{$this->description}',
+                detail = '{$this->detail}',
+                lieu = '{$this->lieu}',
+                distance = {$this->distance},
+                latitude = {$this->latitude},
+                longitude = {$this->longitude}
+                where id={$this->id}
+END;
+    $connection->exec($requete);
+
+}
+public function setParam($propriete,$valeur){
+        $this->$propriete=$valeur;
+}
 
     public function getQuantite()
     {
@@ -150,4 +180,45 @@ class Product
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getDetail(): string
+    {
+        return $this->detail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLieu(): string
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDistance(): string
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLatitude(): string
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongitude(): string
+    {
+        return $this->longitude;
+    }
+
 }

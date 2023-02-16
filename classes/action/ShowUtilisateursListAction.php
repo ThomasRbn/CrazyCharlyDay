@@ -19,6 +19,7 @@ class ShowUtilisateursListAction extends Action
 
     public function execute(): string
     {
+        if(($_SESSION["status"])!==0)header("Location: index.php");
         $connection = ConnectionFactory::makeConnection();
         $resultset = $connection->prepare("SELECT * FROM user");
         $resultset->execute();

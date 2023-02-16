@@ -1,0 +1,2 @@
+<label for='Image' > Image :</label >
+<input type = 'text' name = 'Image' id = 'Image' value='{$produit->getImage()}' ><br >
