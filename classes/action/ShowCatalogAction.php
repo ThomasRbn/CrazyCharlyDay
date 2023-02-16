@@ -28,7 +28,7 @@ class ShowCatalogAction extends Action
         $page = htmlspecialchars($_SERVER['PHP_SELF'] . '?action=' . $_GET['action']);
 
         $html .= <<<END
-                <p> Ca marche </p>
+                <p> Catalogue des produits :  </p>
             END;
         $html .= $renderer->render();
 
