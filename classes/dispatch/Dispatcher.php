@@ -3,8 +3,9 @@
 namespace ccd\dispatch;
 
 
-use ccd\action\ShowCatalogAction;
-use ccd\products\Catalogue;
+use ccd\action\ActionShowCatalog;
+use ccd\action\ActionShowProduct;
+use ccd\catalogue\Catalogue;
 
 class Dispatcher
 {
@@ -15,9 +16,11 @@ class Dispatcher
         $this->action = $_GET['action'] ?? null;
     }
 
-    public function run(): void {
+    public function run(): void
+    {
         $action = match ($this->action) {
-              'show-catalog-action' => new ShowCatalogAction(new Catalogue())
+            'show-catalog-action' => new ActionShowCatalog(new Catalogue()),
+            'showProduct' => new ActionShowProduct(),
 //            'signin' => new SigninAction(),
 //            'register' => new RegisterAction(),
 //            'logout' => new LogoutAction(),

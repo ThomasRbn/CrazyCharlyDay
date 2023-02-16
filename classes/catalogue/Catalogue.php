@@ -1,9 +1,9 @@
 <?php
 
-namespace ccd\products;
+namespace ccd\catalogue;
 use ccd\db\ConnectionFactory;
+use ccd\products\InvalidPropertyNameException;
 use PDOStatement;
-use ccd\catalogue\Product;
 
 class Catalogue
 {

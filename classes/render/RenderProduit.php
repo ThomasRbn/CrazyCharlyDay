@@ -29,6 +29,3 @@ class RenderProduit implements Renderer
         HTML;
     }
 }
-{
-
-}

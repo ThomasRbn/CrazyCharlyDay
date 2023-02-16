@@ -1,10 +1,11 @@
 <?php
 
 namespace ccd\render;
-use ccd\products\Catalogue;
+
+use ccd\catalogue\Catalogue;
 use ccd\exception\InvalidPropertyNameException;
 
-class CatalogueRenderer implements Renderer
+class RenderCatalogue implements Renderer
 {
 
     private Catalogue $catalogue;
@@ -25,9 +26,19 @@ class CatalogueRenderer implements Renderer
         $html .= '<div><label id="title">' . $nom . '</label></div>';
         $html .= '<div id="catalog">';
 
+        $id = 1;
         foreach ($this->catalogue->__get("produits") as $produit) {
-            $renderer = new RenderProduit($produit);
-            $html .= $renderer->render();
+            $html .= <<<HTML
+            <div class="produit">
+                <div class="image">
+                    <img width = 20% height = 20% src="{$produit->getImage()}" alt="{$produit->getNom()}">
+                </div>
+                <div class="description">
+                    <a href="?action=showProduct&produit={$id}"><h2>{$produit->getNom()}</h2></a>
+                </div>
+            </div>
+            HTML;
+            $id++;
         }
         $html .= '</div></div>';
         return $html;

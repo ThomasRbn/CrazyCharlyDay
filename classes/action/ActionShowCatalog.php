@@ -1,11 +1,10 @@
 <?php
 
 namespace ccd\action;
-use ccd\products\Catalogue;
-use ccd\render\CatalogueRenderer;
-use ccd\action\Action;
+use ccd\catalogue\Catalogue;
+use ccd\render\RenderCatalogue;
 
-class ShowCatalogAction extends Action
+class ActionShowCatalog extends Action
 {
     private Catalogue $catalogue;
 
@@ -21,15 +20,12 @@ class ShowCatalogAction extends Action
 
     public function execute(): string
     {
-        $renderer = new CatalogueRenderer($this->catalogue);
+        $renderer = new RenderCatalogue($this->catalogue);
 
         $html = "";
 
         $page = htmlspecialchars($_SERVER['PHP_SELF'] . '?action=' . $_GET['action']);
 
-        $html .= <<<END
-                <p> Ca marche </p>
-            END;
         $html .= $renderer->render();
 
         return $html;
