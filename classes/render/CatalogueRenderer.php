@@ -59,7 +59,7 @@ class CatalogueRenderer implements Renderer
         // Affichage de la liste des produits pour la page courante
         for ($i = $debut; $i < $fin && $i < count($produits); $i++) {
             $produit = $produits[$i];
-            $renderer = new RenderProduit($produit);
+            $renderer = new RenderProduitCatalogue($produit);
             $html .= $renderer->render();
 
         }
