@@ -45,6 +45,19 @@ class ShowUtilisateurAction extends Action
     private function getForm($row): string{
         ($row['status']==0)?$admin="oui":$admin="non";
         return <<<END
+<header>
+      <img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%">
+      <nav>
+        <ul>
+          <li><a href="?action=ShowCatalogAction">Accueil</a> </li>
+          <li><a href="?action=showUtilisateurList">Montrer la liste des utilisateurs</a></li>
+          <li><a href="?action=gestionCompte">Gérer son compte</a> </li>
+          <li><a href="?action=afficherPanier">Panier</a> </li>
+          <li><a href="?action=logout">Déconnexion</a></li>
+          
+        </ul>
+      </nav>
+    </header>
 <div class="utilisateur">
             <div class="description">
                 <h2>email: {$row['email']}</h2>
