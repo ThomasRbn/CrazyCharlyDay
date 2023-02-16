@@ -40,3 +40,19 @@
     font-size: 14px;
     line-height: 1.5;
 }
+
+.page {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.page.active {
+    background-color: #ddd;
+    color: #fff;
+}
+

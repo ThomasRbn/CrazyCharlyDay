@@ -16,6 +16,7 @@ class RenderProduitCatalogue implements Renderer
     public function render(): string
     {
         return <<<HTML
+        <link rel="stylesheet" href="style.css">
         <div class="produit">
             <div class="image">
                 <img src="{$this->produit->getImage()}" alt="{$this->produit->getNom()}">
