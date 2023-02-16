@@ -11,23 +11,24 @@ class AjouterAuPanierAction extends Action
     public function execute(): string
     {
         $produit = Product::loadProduct();
-
-        if (isset($_SESSION['email'])) {
-            $panier = new Panier();
-            $panier2 = $panier->getContenu();
+        if (isset($_SESSION['email']) && isset($_SESSION['panier'])) {
+            $panier = $_SESSION['panier'];
             $panier->ajouterProduit($produit);
-            $_SESSION['panier'] = $panier2;
-            $renderer = new PanierRenderer($panier);
+            $_SESSION['panier'] = $panier;
 
-            return $renderer->render();
         } else {
-            /*
-            $panier = new \ccd\Panier\Panier();
+            $panier = new Panier();
             $panier->ajouterProduit($produit);
-            $_SESSION['panier'] = $panier; */
+            $_SESSION['panier'] = $panier;
         }
+        var_dump($_SESSION['panier']);
+        return <<<HTML
+<!--        <head>-->
+<!--            <meta http-equiv="refresh" content="0;URL=index.php?action=show-catalog-action">-->
+<!--        </head>-->
+        <script>alert("Produit ajouté au panier")</script>
+HTML;
 
-        return (new \ccd\render\RenderProduit($produit))->render();
     }
 }
 

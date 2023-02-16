@@ -30,8 +30,7 @@ class RenderProduit implements Renderer
 
         if (isset($_SESSION['email'])) {
             // Ajout du formulaire pour chaque produit
-            $html .= '<form method="post" action="?action=ajouter-au-panier-action">';
-            $html .= '<input type="hidden" name="id" value="' . $this->produit->getId() . '">';
+            $html .= '<form method="post" action="?action=ajouterAuPanier&produit=' . $this->produit->getId() . '">';
             $html .= '<label>Quantité/Poids :</label>';
             $html .= '<input type="number" name="quantity" value="1">';
             $html .= '<input type="submit" value="Ajouter au panier">';

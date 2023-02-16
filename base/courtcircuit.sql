@@ -73,6 +73,16 @@ CREATE TABLE user (
   PRIMARY KEY (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE panier (
+    email varchar(64) NOT NULL,
+    idProduit int(11) NOT NULL,
+    quantite int(11) NOT NULL,
+    PRIMARY KEY (email, idProduit)
+);
+
+DROP TABLE IF EXISTS `panier`;
+
 # USE ccd;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

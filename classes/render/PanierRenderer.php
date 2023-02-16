@@ -2,6 +2,7 @@
 
 namespace ccd\render;
 
+use ccd\db\ConnectionFactory;
 use ccd\panier\Panier;
 
 class PanierRenderer implements Renderer {
@@ -13,9 +14,12 @@ class PanierRenderer implements Renderer {
     }
 
     public function render(): string {
+
+
+
+
         $html = '<div id="panier-container">';
         $html .= '<div><label id="title">Mon panier</label></div>';
-
         // Affichage de la liste des produits du panier
         $html .= '<div id="panier">';
         foreach ($this->panier->getProduits() as $produit) {

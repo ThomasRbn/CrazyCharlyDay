@@ -3,6 +3,7 @@
 namespace ccd\Panier;
 
 use ccd\catalogue\Product;
+use ccd\db\ConnectionFactory;
 
 class Panier
 {
@@ -19,25 +20,34 @@ class Panier
         } */
         $this->produits = array();
         $_SESSION['panier'] = $this->produits;
-
     }
 
     public function ajouterProduit(Product $produit, $quantite = 1): void
     {
-        if (!isset($this->produits[$produit->getId()])) {
-            $this->produits[$produit->getId()] = array(
-                'produit' => $produit,
-                'quantite' => 0
-            );
-        }
-        $_SESSION['panier'] = $this->produits;
-
-        $this->produits[$produit->getId()]['quantite'] += $quantite;
+        $db = ConnectionFactory::makeConnection();
+        $stmt = $db->prepare("INSERT INTO panier (idProduit, email, quantite) VALUES (:id_produit, :id_user, :quantite)");
+        $id = $produit->getId();
+        $stmt->bindParam(':id_produit', $id);
+        $stmt->bindParam(':quantite', $quantite);
+        $stmt->bindParam(':id_user', $_SESSION['email']);
+        $stmt->execute();
     }
 
     public function supprimerProduit(Product $produit)
     {
-        unset($this->produits[$produit->getId()]);
+        $db = ConnectionFactory::makeConnection();
+        $stmt = $db->prepare("DELETE FROM panier WHERE id_produit = :id_produit AND id_user = :id_user");
+        $id = $produit->getId();
+        $stmt->bindParam(':id_produit', $id);
+
+        $stmt2 = $db->prepare("SELECT id FROM user WHERE email = :email");
+        $stmt2->bindParam(':email', $_SESSION['email']);
+        $stmt2->execute();
+        $donnees = $stmt2->fetch();
+        $id_user = $donnees['id'];
+
+        $stmt->bindParam(':id_user', $id_user);
+        $stmt->execute();
     }
 
 
