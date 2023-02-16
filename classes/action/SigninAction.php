@@ -26,7 +26,7 @@ class SigninAction extends Action
             try {
                 // Vérification que les champs sont bien remplis
                 if (!(isset($_POST['email']) && isset($_POST['password']))) {
-                    throw new AuthException("Erreur : email ou mot de passe non renseigné");
+                    echo '<script>alert("Veuillez remplir tous les champs")</script>';
                 }
                 // Filtre les entrées
                 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -39,7 +39,14 @@ class SigninAction extends Action
                 if ($res) {
                     header("Location: index.php");
                 } else {
-                    throw new AuthException("Erreur : email ou mot de passe incorrect");
+                    echo <<<END
+                   <head>
+                        <meta http-equiv="refresh" content="0;URL=index.php">
+                   </head>
+                    <script>alert("Email ou mot de passe incorrect")</script>';
+                END;
+
+
                 }
 
             } catch (\iutnc\NetVOD\AuthException\AuthException $e) {
@@ -53,20 +60,19 @@ class SigninAction extends Action
     private function getForm(): string
     {
         return <<<END
+            <body id="accueil">
                 <div class="enteteAccueil">
                 <img src="./img/logoCC.jpg" width="50%" height="50%" >
-                <form method="post" action="?action=signin">
-                        <label> Email :  <br><input type="email" name="email" placeholder="<email>"> </label>
-                        <label> Mot de passe :  <br><input type="password" name="password" placeholder = "<mot de passe>"> </label>
-                        
-                        <button type="submit" value="validerConnexion" name="validerConnexion"> Connexion </button>
-                        <div>
-                            <label>Pas de compte ?</label>
-                            <a href="?action=register">Créer Un Compte</a>
-                        </div>
+                <form method="post" action="?action=signin" id="formInscr">
+                        <label style="font-size: 1.25em; grid-column: 1; grid-row: 1"> Email :</label>
+                        <input style="grid-column: 2; grid-row: 1" type="email" name="email" placeholder="Email">
+                        <label style="grid-column: 1; grid-row: 2">Mot de passe :</label>
+                        <input style="grid-column: 2; grid-row: 2" type="password" name="password" placeholder = "Mot de passe">
+                        <button style="grid-column: span 2; grid-row: 3" type="submit" value="validerConnexion" name="validerConnexion">Connexion</button>
+                        <a style="grid-column: span 2; grid-row: 4" href="?action=register">Créer Un Compte</a>
                 </form>
                 </div>
-
+            </body>
             END;
     }
 }
