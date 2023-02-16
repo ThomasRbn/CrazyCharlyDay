@@ -57,10 +57,12 @@ class CatalogueRenderer implements Renderer
         if ($page > 1) {
             $html .= '<a class="page" href="?action=show-catalog-action&page=' . ($page - 1) . '">&#8249;</a>';
         }
+
         for ($i = 1; $i <= $nb_pages; $i++) {
             $active = $i == $page ? ' active' : '';
             $html .= '<a class="page' . $active . '" href="?action=show-catalog-action&page=' . $i . '">' . $i . '</a>';
         }
+
         if ($page < $nb_pages) {
             $html .= '<a class="page" href="?action=show-catalog-action&page=' . ($page + 1) . '">&#8250;</a>';
         }
