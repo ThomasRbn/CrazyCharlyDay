@@ -10,7 +10,9 @@ class RenderPage implements Renderer
     {
         $dispatcher = new Dispatcher();
         return <<<HTML
-            <p>CCD</p>
+        <main>
+        {$dispatcher->run()}
+        </main>
         HTML;
     }
 
