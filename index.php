@@ -11,5 +11,5 @@ ConnectionFactory::setConfig('./classes/db/db.config.ini');
 
 
 //Affichage
-$page = new \ccd\render\RenderPage();
+$page = new \ccd\render\PanierRenderer();
 echo $page->render();

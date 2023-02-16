@@ -3,10 +3,12 @@
 namespace ccd\dispatch;
 
 
+use ccd\action\AjouterAuPanierAction;
 use ccd\action\ShowCatalogAction;
-use ccd\action\ShowProductAction;
-use ccd\catalogue\Catalogue;
+use ccd\Panier\Panier;
+use ccd\Catalogue\Catalogue;
 use Exception;
+use ccd\action\ShowProductAction;
 
 class Dispatcher
 {
@@ -28,7 +30,7 @@ class Dispatcher
 //            'signin' => new SigninAction(),
 //            'register' => new RegisterAction(),
 //            'logout' => new LogoutAction(),
-//            'display-episode-details' => new DisplayEpisodeDetailsAction(),
+              'ajouter-au-panier-action' => new AjouterAuPanierAction(new Panier()),
 //            'display-serie' => new DisplaySerieAction(),
 //            'accueil-catalogue' => new AccueilCatalogueAction(),
 //            'add-fav-series' => new AddFavSeriesAction(),
