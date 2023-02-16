@@ -170,4 +170,45 @@ public function setParam($propriete,$valeur){
     {
         return $this->id;
     }
+
+    /**
+     * @return string
+     */
+    public function getDetail(): string
+    {
+        return $this->detail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLieu(): string
+    {
+        return $this->lieu;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDistance(): string
+    {
+        return $this->distance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLatitude(): string
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongitude(): string
+    {
+        return $this->longitude;
+    }
+
 }
