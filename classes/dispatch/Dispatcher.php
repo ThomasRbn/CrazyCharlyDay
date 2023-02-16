@@ -57,7 +57,7 @@ class Dispatcher
             'gestionCompte' => new GestionCompteAction(),
 //            'update-episode-progress' => new UpdateEpisodeProgressAction(),
 //            'delete-fav-series' => new DeleteFavSeriesAction(),
-            default => (isset($_SESSION['email']))? new DefaultAction() : new SigninAction(),
+            default => (isset($_SESSION['email']))? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
         };
         try {
             $this->renderPage($action->execute());
