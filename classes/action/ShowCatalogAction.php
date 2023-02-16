@@ -23,11 +23,7 @@ class ShowCatalogAction extends Action
     {
         $renderer = new CatalogueRenderer($this->catalogue);
 
-        $html = "";
-
-        $page = htmlspecialchars($_SERVER['PHP_SELF'] . '?action=' . $_GET['action']);
-
-        $html .= <<<END
+        $html = <<<END
                 
             END;
         $html .= $renderer->render();
