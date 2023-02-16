@@ -64,6 +64,14 @@
     ALTER TABLE produit
       MODIFY id int(11) NOT NULL AUTO_INCREMENT;
 
+CREATE TABLE user (
+  status int(3) NOT NULL CHECK (status=0 /*admin*/ OR status =100/*utilisateur*/),
+  email varchar(128) NOT NULL,
+  password varchar(128) NOT NULL,
+  nom varchar(128) NOT NULL,
+  prenom varchar(128) NOT NULL,
+  PRIMARY KEY (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
