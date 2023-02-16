@@ -36,5 +36,28 @@ class Panier
     {
         return $this->produits;
     }
+
+    public function getProduits()
+    {
+        return $this->produits;
+    }
+
+    public function getPrixTotal()
+    {
+        $prixTotal = 0;
+        foreach ($this->produits as $produit) {
+            $prixTotal += $produit['produit']->getPrix() * $produit['quantite'];
+        }
+        return $prixTotal;
+    }
+
+    public function getIndicateurCarbone()
+    {
+        $indicateurCarbone = 0;
+        foreach ($this->produits as $produit) {
+            $indicateurCarbone += $produit['produit']->getIndicateurCarbone() * $produit['quantite'];
+        }
+        return $indicateurCarbone;
+    }
 }
 

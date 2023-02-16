@@ -2,39 +2,38 @@
 
 namespace ccd\render;
 
-class PanierRenderer implements Renderer
-{
-    public function render(): string
-    {
-        return <<<HTML
-        <div class="panier">
-            <h2>Votre panier</h2>
-            <div class="produits">
-                <div class="produit">
-                    <div class="image">
-                        <img src="" alt="Produit 1">
-                    </div>
-                    <div class="description">
-                        <h2>Produit 1</h2>
-                        <p>Produit 1</p>
-                        <p>10 €</p>
-                    </div>
-                </div>
-                <div class="produit">
-                    <div class="image">
-                        <img src="" alt="Produit 2">
-                    </div>
-                    <div class="description">
-                        <h2>Produit 2</h2>
-                        <p>Produit 2</p>
-                        <p>20 €</p>
-                    </div>
-                </div>
-            </div>
-            <div class="total">
-                <p>Total : 30 €</p>
-            </div>
-        </div>
-        HTML;
+use ccd\panier\Panier;
+
+class PanierRenderer implements Renderer {
+
+    private Panier $panier;
+
+    public function __construct(Panier $panier) {
+        $this->panier = $panier;
+    }
+
+    public function render(): string {
+        $html = '<div id="panier-container">';
+        $html .= '<div><label id="title">Mon panier</label></div>';
+
+        // Affichage de la liste des produits du panier
+        $html .= '<div id="panier">';
+        foreach ($this->panier->getProduits() as $produit) {
+            $html .= '<div class="produit">';
+            $html .= '<div class="nom">' . $produit->getNom() . '</div>';
+            $html .= '<div class="prix">' . $produit->getPrix() . ' €</div>';
+            $html .= '</div>';
+        }
+        $html .= '</div>';
+
+        // Affichage du prix total et de l'indicateur carbone
+        $html .= '<div id="total">';
+        $html .= '<div class="prix-total">Prix total : ' . $this->panier->getPrixTotal() . ' €</div>';
+        $html .= '<div class="indicateur-carbone">Indicateur carbone : ' . $this->panier->getIndicateurCarbone() . '</div>';
+        $html .= '</div>';
+
+        $html .= '</div>';
+
+        return $html;
     }
 }
