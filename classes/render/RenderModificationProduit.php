@@ -9,18 +9,21 @@ class RenderModificationProduit implements Renderer
     public function render(): string
     {
         $produit=Product::loadProduct();
-        $produit->updateProduit();
 
         return "<html >
 <head >
-<title > Formulaire pour ajouter un tableau à la superglobale $_POST en PHP </title >
 </head >
 <body >
+ <div class=image>
+                <img src={$produit->getImage()} alt={$produit->getNom()} width=30% height=30%>
+            </div>
+<form action=?action=showProduct&produit={$produit->getId()} method=post enctype=multipart/form-data>
+    <label for=image>Modifier image :</label>
+    <input type=file name=image id=image>
+    <input type=submit value=Télécharger>
+</form>
 
 <form method = 'post' action=?action=showProduct&produit=".$produit->getId().">
-
-<label for='Image' > Image :</label >
-<input type = 'text' name = 'ImageV' id = 'ImageV' value='{$produit->getImage()}' ><br >
 
 <label for='nom' > Nom :</label >
 <input type = 'text' name = 'nomV' id = 'nomV' value='{$produit->getNom()}' ><br >

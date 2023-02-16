@@ -220,5 +220,18 @@ public function setParam($propriete,$valeur){
     {
         return $this->longitude;
     }
-
+public function addProduct(){
+        $connection=ConnectionFactory::makeConnection();
+        $connection->exec("insert into produit  (id,
+                categorie,
+                nom ,
+                prix ,
+                poids,
+                description,
+                detail,
+                lieu,
+                distance,
+                latitude,
+                longitude) values($this->categorie,$this->nom,$this->prix,$this->poids,$this->description,$this->detail,$this->lieu,$this->distance,$this->latitude,$this->longitude)");
+}
 }

@@ -4,6 +4,7 @@ namespace ccd\dispatch;
 
 
 use ccd\action\AjouterAuPanierAction;
+use ccd\action\AjouterProduitAction;
 use ccd\action\GestionCompteAction;
 use ccd\action\LogoutAction;
 use ccd\action\RechercheCatalogAction;
@@ -61,6 +62,7 @@ class Dispatcher
             'showUtilisateurList' => new ShowUtilisateursListAction(),
             'showUtilisateur' => new ShowUtilisateurAction(),
             'changeUtilisateur' => new ChangeUtilisateurAction(),
+            'ajouter-produit' => new AjouterProduitAction(),
             default => (isset($_SESSION['email'])) ? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
         };
         try {

@@ -1,10 +1,10 @@
 <?php
 
 namespace ccd\action;
+
 use ccd\catalogue\Catalogue;
 use ccd\render\CatalogueRenderer;
-use ccd\action\Action;
-
+use ccd\catalogue\Product;
 class ShowCatalogAction extends Action
 {
     private Catalogue $catalogue;
@@ -21,6 +21,10 @@ class ShowCatalogAction extends Action
 
     public function execute(): string
     {
+        if (isset($_POST['categorieV'])) {
+            $produit = new Product($_POST['IDV'],$_GET['produit'], $_POST["categorieV"], $_POST["nomV"], $_POST["prixV"], $_POST["poidsV"], $_POST["descriptionV"], $_POST["detailV"], $_POST["Lieu"], $_POST["distanceV"], $_POST["latitudeV"], $_POST["longitudeV"]);
+            $produit->addProduct();
+        }
         $renderer = new CatalogueRenderer($this->catalogue);
 
         $html = <<<END

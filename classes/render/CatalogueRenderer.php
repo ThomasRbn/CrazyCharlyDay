@@ -18,6 +18,12 @@ class CatalogueRenderer implements Renderer
 
     public function render(): string
     {
+        $use = "";
+        if (isset($_SESSION['status']) && $_SESSION['status'] == 0) {
+            $use = "<form method=post action=?action=ajouter-produit>
+<input type = submit value = 'ajouter un produit' > </form>";
+        }
+
 
         // Récupération du numéro de page à afficher
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -52,8 +58,8 @@ class CatalogueRenderer implements Renderer
         $html .= '<div id="catalog-container">';
         $html .= '<link rel="stylesheet" href="style.css">';
         $html .= '<div><label id="title">' . $nom . '</label></div>';
+        $html .= $use;
         $html .= '<div id="catalog">';
-
         $produits = $this->catalogue->__get("produits");
 
 
