@@ -40,20 +40,16 @@ class Dispatcher
 
     public function run(): void
     {
-        if (isset($_GET['action'])) {
-            $action = match ($this->action) {
-                'showProduct' => new ShowProductAction(),
-                'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
-                'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
-                'signin' => new SigninAction(),
-                'register' => new RegisterAction(),
-                'logout' => new LogoutAction(),
-                'gestionCompte' => new GestionCompteAction(),
-                default => (isset($_SESSION['email'])) ? new ShowCatalogAction() : new SigninAction(),
-            };
-        } else {
-            $action = new ShowCatalogAction(new Catalogue());
-        }
+        $action = match ($this->action) {
+            'showProduct' => new ShowProductAction(),
+            'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
+            'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
+            'signin' => new SigninAction(),
+            'register' => new RegisterAction(),
+            'logout' => new LogoutAction(),
+            'gestionCompte' => new GestionCompteAction(),
+            default => (isset($_SESSION['email'])) ? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
+        };
         try {
             $this->renderPage($action->execute());
         } catch (Exception $e) {

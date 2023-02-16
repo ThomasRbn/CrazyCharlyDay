@@ -10,6 +10,9 @@ class RenderPage implements Renderer
     {
         $dispatcher = new Dispatcher();
         return <<<HTML
+        <head>
+            <link rel="stylesheet" href="style.css">
+        </head>
         {$dispatcher->run()}
         HTML;
     }
