@@ -1,7 +1,7 @@
 <?php
 
 namespace ccd\action;
-use ccd\products\Catalogue;
+use ccd\catalogue\Catalogue;
 use ccd\render\CatalogueRenderer;
 use ccd\action\Action;
 

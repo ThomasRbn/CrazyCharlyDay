@@ -2,7 +2,7 @@
 
 namespace ccd\catalogue;
 use ccd\db\ConnectionFactory;
-use ccd\products\InvalidPropertyNameException;
+use ccd\catalogue\InvalidPropertyNameException;
 use PDOStatement;
 
 class Catalogue
