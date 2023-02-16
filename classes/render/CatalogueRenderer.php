@@ -3,6 +3,7 @@
 namespace ccd\render;
 
 use ccd\catalogue\Catalogue;
+use ccd\db\ConnectionFactory;
 use ccd\exception\InvalidPropertyNameException;
 
 class CatalogueRenderer implements Renderer
@@ -34,14 +35,26 @@ class CatalogueRenderer implements Renderer
             $nom = "CATALOG";
         }
 
-        $html = '<div id="catalog-container">';
+        $html = '<body id="accueil">';
+        $html .= '<div id="header">';
+        $html .= '<img style="" src="img/logoCC.jpg" alt="logo" width="17%" height="10%">';
+        $html .= '<div id="menu" style="grid-column: 2">';
+        $db = ConnectionFactory::makeConnection();
+        $query = $db->prepare("SELECT * FROM user WHERE email = :email");
+        $query->execute(['email' => $_SESSION['email']]);
+        $user = $query->fetch();
+        if (isset($_SESSION['email'])) {
+            $html .= '<p style="color: white">Bonjour ' . $user['prenom'] . ' ' . $user['nom'] . '</p>';
+            $html .= '<a style="color: white" href="?action=logout">Déconnexion</a>';
+        }
+        $html .= '</div>';
+        $html .= '</div>';
+        $html .= '<div id="catalog-container">';
         $html .= '<link rel="stylesheet" href="style.css">';
         $html .= '<div><label id="title">' . $nom . '</label></div>';
         $html .= '<div id="catalog">';
 
         $produits = $this->catalogue->__get("produits");
-
-
 
 
         // Affichage de la liste des produits pour la page courante
@@ -67,6 +80,7 @@ class CatalogueRenderer implements Renderer
             $html .= '<a class="page" href="?action=show-catalog-action&page=' . ($page + 1) . '">&#8250;</a>';
         }
         $html .= '</div> </div>';
+        $html .= "</body>";
 
         return $html;
     }
