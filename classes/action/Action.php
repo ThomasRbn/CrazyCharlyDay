@@ -1,6 +1,6 @@
 <?php
 
-namespace cdd\action;
+namespace ccd\action;
 
 /**
  * Class Action

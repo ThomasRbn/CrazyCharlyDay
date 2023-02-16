@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 
 //Configuration
 require_once 'vendor/autoload.php';
