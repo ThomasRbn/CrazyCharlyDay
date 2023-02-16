@@ -3,9 +3,10 @@
 namespace ccd\dispatch;
 
 
-use ccd\action\ActionShowCatalog;
-use ccd\action\ActionShowProduct;
+use ccd\action\ShowCatalogAction;
+use ccd\action\ShowProductAction;
 use ccd\catalogue\Catalogue;
+use Exception;
 
 class Dispatcher
 {
@@ -19,8 +20,8 @@ class Dispatcher
     public function run(): void
     {
         $action = match ($this->action) {
-            'show-catalog-action' => new ActionShowCatalog(new Catalogue()),
-            'showProduct' => new ActionShowProduct(),
+            'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
+            'showProduct' => new ShowProductAction(),
 //            'signin' => new SigninAction(),
 //            'register' => new RegisterAction(),
 //            'logout' => new LogoutAction(),

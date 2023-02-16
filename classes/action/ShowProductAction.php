@@ -4,7 +4,7 @@ namespace ccd\action;
 
 use ccd\catalogue\Product;
 
-class ActionShowProduct extends Action
+class ShowProductAction extends Action
 {
 
     public function execute(): string

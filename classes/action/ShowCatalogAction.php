@@ -4,7 +4,7 @@ namespace ccd\action;
 use ccd\catalogue\Catalogue;
 use ccd\render\RenderCatalogue;
 
-class ActionShowCatalog extends Action
+class ShowCatalogAction extends Action
 {
     private Catalogue $catalogue;
 
