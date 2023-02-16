@@ -47,6 +47,7 @@ class Authentification
             // Ajout des informations de l'utilisateur dans la session
             $_SESSION['email'] = $user['email'];
             $_SESSION['user'] = $user['prenom'];
+            $_SESSION['status'] = $user['status'];
         } catch (AuthException $e) {
             return false;
         }
