@@ -52,27 +52,11 @@ class Dispatcher
                 'register' => new RegisterAction(),
                 'logout' => new LogoutAction(),
                 'gestionCompte' => new GestionCompteAction(),
-                default => (isset($_SESSION['email'])) ? new DefaultAction() : new SigninAction(),
+                default => (isset($_SESSION['email'])) ? new ShowCatalogAction() : new SigninAction(),
             };
         } else {
             $action = new ShowCatalogAction(new Catalogue());
         }
-
-
-//            'signin' => new SigninAction(),
-//            'register' => new RegisterAction(),
-//            'logout' => new LogoutAction(),
-//            'display-episode-details' => new DisplayEpisodeDetailsAction(),
-//            'display-serie' => new DisplaySerieAction(),
-//            'accueil-catalogue' => new AccueilCatalogueAction(),
-//            'add-fav-series' => new AddFavSeriesAction(),
-//            'user-home-page' => new UserHomePageAction(),
-
-//            'update-episode-progress' => new UpdateEpisodeProgressAction(),
-//            'delete-fav-series' => new DeleteFavSeriesAction(),
-//            default => new DefaultAction(),
-
-
         try {
             $this->renderPage($action->execute());
         } catch (Exception $e) {
