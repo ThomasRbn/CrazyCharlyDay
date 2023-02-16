@@ -18,8 +18,9 @@ class SigninAction extends Action
     public function execute(): string
     {
         $html = '';
-
-        if ($this->http_method === 'GET') { // Si la méthode est GET alors on affiche le formulaire de connexion
+        if (!isset($_POST['validerConnexion'])) {
+//        if ($this->http_method === 'GET') { // Si la méthode est GET alors on affiche le formulaire de connexion
+//            echo "ici";
             $html .= $this->getForm();
         } else { // POST Traitement du formulaire
             try {
@@ -57,7 +58,7 @@ class SigninAction extends Action
                         <label> Email :  <br><input type="email" name="email" placeholder="<email>"> </label>
                         <label> Mot de passe :  <br><input type="password" name="password" placeholder = "<mot de passe>"> </label>
                         
-                        <button type="submit"> Connexion </button>
+                        <button type="submit" value="validerConnexion" name="validerConnexion"> Connexion </button>
                         <div>
                             <label>Pas de compte ?</label>
                             <a href="?action=register">Créer Un Compte</a>

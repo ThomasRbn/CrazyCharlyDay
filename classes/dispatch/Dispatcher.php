@@ -3,6 +3,7 @@
 namespace ccd\dispatch;
 
 
+use ccd\action\AjouterAuPanierAction;
 use ccd\action\GestionCompteAction;
 use ccd\action\LogoutAction;
 use ccd\action\RegisterAction;
@@ -10,6 +11,7 @@ use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
 use ccd\action\SigninAction;
 use ccd\catalogue\Catalogue;
+use ccd\Panier\Panier;
 use Exception;
 
 class Dispatcher
@@ -40,10 +42,7 @@ class Dispatcher
     {
         $action = match ($this->action) {
             'showProduct' => new ShowProductAction(),
-            'show-catalog-action',
-            'show-catalog-action&page=1',
-            'show-catalog-action&page=2',
-            'show-catalog-action&page=3' => new ShowCatalogAction(new Catalogue()),
+            'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
             'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
             'signin' => new SigninAction(),
             'register' => new RegisterAction(),
