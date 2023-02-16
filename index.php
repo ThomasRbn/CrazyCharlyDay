@@ -8,8 +8,6 @@ use ccd\db\ConnectionFactory;
 
 session_start();
 ConnectionFactory::setConfig('./classes/db/db.config.ini');
-
-
 //Affichage
 $page = new \ccd\render\PanierRenderer();
 echo $page->render();
