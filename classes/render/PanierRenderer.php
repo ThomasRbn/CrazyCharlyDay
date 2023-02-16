@@ -7,37 +7,35 @@ use ccd\panier\Panier;
 
 class PanierRenderer implements Renderer {
 
-    private Panier $panier;
+    private array $panier;
 
-    public function __construct(Panier $panier) {
+    public function __construct(array $panier) {
         $this->panier = $panier;
     }
 
     public function render(): string {
+    $db = ConnectionFactory::makeConnection();
+    $stmt = $db->prepare("SELECT * FROM panier WHERE email = :email");
+    $stmt->bindParam(':email', $_SESSION['email']);
+    $stmt->execute();
+    $donnees = $stmt->fetchAll();
+    $panier = array();
+    $html = "";
+    foreach ($donnees as $produit) {
+        $stmt2 = $db->prepare("SELECT * FROM produit WHERE id = :id");
+        $stmt2->bindParam(':id', $produit['idProduit']);
+        $stmt2->execute();
+        $donnees2 = $stmt2->fetch();
+        $produit = array(
+            'id' => $donnees2['id'],
+            'nom' => $donnees2['nom'],
+            'prix' => $donnees2['prix'],
+            'quantite' => $produit['quantite']
+        );
+        $panier[] = $produit;
 
-
-
-
-        $html = '<div id="panier-container">';
-        $html .= '<div><label id="title">Mon panier</label></div>';
-        // Affichage de la liste des produits du panier
-        $html .= '<div id="panier">';
-        foreach ($this->panier->getProduits() as $produit) {
-            $html .= '<div class="produit">';
-            $html .= '<div class="nom">' . $produit->getNom() . '</div>';
-            $html .= '<div class="prix">' . $produit->getPrix() . ' €</div>';
-            $html .= '</div>';
-        }
-        $html .= '</div>';
-
-        // Affichage du prix total et de l'indicateur carbone
-        $html .= '<div id="total">';
-        $html .= '<div class="prix-total">Prix total : ' . $this->panier->getPrixTotal() . ' €</div>';
-        $html .= '<div class="indicateur-carbone">Indicateur carbone : ' . $this->panier->getIndicateurCarbone() . '</div>';
-        $html .= '</div>';
-
-        $html .= '</div>';
-
+        $html .= $produit['nom'] . " " . $produit['prix'] . "€ " . $produit['quantite'] . "x <br>";
+    }
         return $html;
     }
 }

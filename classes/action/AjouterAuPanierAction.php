@@ -21,11 +21,11 @@ class AjouterAuPanierAction extends Action
             $panier->ajouterProduit($produit);
             $_SESSION['panier'] = $panier;
         }
-        var_dump($_SESSION['panier']);
+
         return <<<HTML
-<!--        <head>-->
-<!--            <meta http-equiv="refresh" content="0;URL=index.php?action=show-catalog-action">-->
-<!--        </head>-->
+        <head>
+            <meta http-equiv="refresh" content="0;URL=index.php?action=show-catalog-action">
+        </head>
         <script>alert("Produit ajouté au panier")</script>
 HTML;
 
