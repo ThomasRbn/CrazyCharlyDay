@@ -22,7 +22,8 @@ class ShowUtilisateurAction extends Action
             $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
             $prenom = filter_input(INPUT_POST, 'prenom', FILTER_SANITIZE_STRING);
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            $status = filter_input(INPUT_POST, 'status', FILTER_SANITIZE_NUMBER_INT);
+            $status = filter_input(INPUT_POST, 'status');
+            ($status == "on")?$status=0:$status=100;
             // Vérification du mot de passe
             // Mise à jour des données de l'utilisateur
             $db->query("UPDATE user SET nom = '$nom', prenom = '$prenom', email = '$email', status = $status WHERE email = '{$row['email']}'");
@@ -41,14 +42,14 @@ class ShowUtilisateurAction extends Action
     }
 
     private function getForm($row): string{
-
+        ($row['status']==0)?$admin="oui":$admin="non";
         return <<<END
 <div class="utilisateur">
             <div class="description">
-                <h2>{$row['email']}</h2>
-                <p>{$row['nom']}</p>
-                <p>{$row['prenom']}</p>
-                <p>{$row['status']}</p>
+                <h2>email: {$row['email']}</h2>
+                <p>nom: {$row['nom']}</p>
+                <p>prenom: {$row['prenom']}</p>
+                <p>admin: {$admin}</p>
                 <form method="post" action="?action=changeUtilisateur&utilisateur={$row['email']}">
                         <button type="submit" value="modifierUser" name="modifierUser"> Modifier </button>
                 </form>
