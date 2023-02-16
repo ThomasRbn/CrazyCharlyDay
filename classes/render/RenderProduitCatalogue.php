@@ -3,6 +3,7 @@
 namespace ccd\render;
 
 use ccd\catalogue\Product;
+use ccd\db\ConnectionFactory;
 
 class RenderProduitCatalogue implements Renderer
 {
@@ -17,12 +18,13 @@ class RenderProduitCatalogue implements Renderer
     {
         return <<<HTML
         <link rel="stylesheet" href="style.css">
+        
         <div class="produit">
             <div class="image">
                 <img src="{$this->produit->getImage()}" alt="{$this->produit->getNom()}">
             </div>
             <div class="description">
-                <h2>{$this->produit->getNom()}</h2>
+                <a href="?action=showProduct&produit={$this->produit->getId()}"><h3>{$this->produit->getNom()}</h3></a>
                 <p>Prix : {$this->produit->getPrix()} €</p>
                 <p>Lieu : {$this->produit->getLocalisation()}</p>
             </div>

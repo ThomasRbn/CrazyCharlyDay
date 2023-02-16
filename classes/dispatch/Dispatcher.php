@@ -3,18 +3,16 @@
 namespace ccd\dispatch;
 
 
-
-use ccd\action\SigninAction;
-use ccd\action\RegisterAction;
 use ccd\action\AjouterAuPanierAction;
-use ccd\action\ShowCatalogAction;
-use ccd\Panier\Panier;
-use ccd\Catalogue\Catalogue;
-use Exception;
-//use ccd\products\Catalogue;
-use ccd\action\LogoutAction;
 use ccd\action\GestionCompteAction;
+use ccd\action\LogoutAction;
+use ccd\action\RegisterAction;
+use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
+use ccd\action\SigninAction;
+use ccd\catalogue\Catalogue;
+use ccd\Panier\Panier;
+use Exception;
 
 class Dispatcher
 {
@@ -42,23 +40,23 @@ class Dispatcher
 
     public function run(): void
     {
-        $action = match ($this->action) {
-            'showProduct' => new ShowProductAction(),
-            'show-catalog-action' => new ShowCatalogAction(new Catalogue()),
-            'addChoiceTriCatalogue' =>  $this->addChoiceTriCatalogue(),
-            'signin' => new SigninAction(),
-            'register' => new RegisterAction(),
-            'logout' => new LogoutAction(),
-//            'display-episode-details' => new DisplayEpisodeDetailsAction(),
-//            'display-serie' => new DisplaySerieAction(),
-//            'accueil-catalogue' => new AccueilCatalogueAction(),
-//            'add-fav-series' => new AddFavSeriesAction(),
-//            'user-home-page' => new UserHomePageAction(),
-            'gestionCompte' => new GestionCompteAction(),
-//            'update-episode-progress' => new UpdateEpisodeProgressAction(),
-//            'delete-fav-series' => new DeleteFavSeriesAction(),
-            default => (isset($_SESSION['email']))? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
-        };
+        if (isset($_GET['action'])) {
+            $action = match ($this->action) {
+                'showProduct' => new ShowProductAction(),
+                'show-catalog-action',
+                'show-catalog-action&page=1',
+                'show-catalog-action&page=2',
+                'show-catalog-action&page=3' => new ShowCatalogAction(new Catalogue()),
+                'addChoiceTriCatalogue' => $this->addChoiceTriCatalogue(),
+                'signin' => new SigninAction(),
+                'register' => new RegisterAction(),
+                'logout' => new LogoutAction(),
+                'gestionCompte' => new GestionCompteAction(),
+                default => (isset($_SESSION['email'])) ? new ShowCatalogAction() : new SigninAction(),
+            };
+        } else {
+            $action = new ShowCatalogAction(new Catalogue());
+        }
         try {
             $this->renderPage($action->execute());
         } catch (Exception $e) {
