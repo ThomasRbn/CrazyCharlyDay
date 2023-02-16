@@ -38,7 +38,7 @@ class Catalogue
     {
         $produits = [];
         while ($row = $resultSet->fetch()) {
-            $produits[] = new Product($row['id'], $row['categorie'], $row['nom'], $row['prix'], $row['poids'], $row['description'], $row['detail'], $row['lieu'], $row['distance'], $row['latitude'], $row['longitude']);
+            $produits[] = new Product($row['id'], $row['categorie'], $row['nom'], $row['prix'], $row['poids'], $row['description'], $row['detail'], $row['lieu'], $row['distance'], $row['latitude'], $row['longitude'], 0);
         }
         return $produits;
     }

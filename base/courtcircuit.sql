@@ -30,7 +30,7 @@
       latitude float(8,6) NOT NULL,
       longitude float(8,6) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    ALTER TABLE PRODUIT ADD COLUMN image varchar(255);
+    ALTER TABLE produit ADD COLUMN image varchar(255);
 
     INSERT INTO produit (id, categorie, nom, prix, poids, description, detail, lieu, distance, latitude, longitude,image) VALUES
     (1, 1, 'Tablette de chocolat noir 74% aux amandes - Bio Équitable - Vrac', '43.50', 0, 'Ingrédients : Chocolat noir 74%*, amandes toastées*.<p>*Ingrédients issus de l’agriculture biologique <p>Ingrédients issus du commerce équitable<p>Allergènes : Amande<p>Traces possibles de lait, gluten, fruits à coque (noisettes, noix, noix de cajou), soja, sésame, œuf et arachide', 'VALEURS NUTRITIONNELLES MOYENNES POUR 100G<p>Energie 576 kcal - 2387 kJ<p>Matières grasses 45 g<p>(dont acides gras saturés 25 g)<p>Glucides 28 g<p>(dont sucres 24 g)<p>Fibres 14 g<p>Protéines 9,3 g<p>Sel 0,18 g', 'Santeny', 293, 48.725288, 2.572804,'base/Image/1.jpg'),
@@ -73,6 +73,7 @@ CREATE TABLE user (
   PRIMARY KEY (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+# USE ccd;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

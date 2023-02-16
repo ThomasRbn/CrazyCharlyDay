@@ -53,10 +53,9 @@ class SigninAction extends Action
     {
         return <<<END
                 <div class="enteteAccueil">
-                <label>Se connecter</label>
                 <form method="post" action="?action=signin">
-                        <label> Email :  <input type="email" name="email" placeholder="<email>"> </label>
-                        <label> Mot de passe :  <input type="password" name="password" placeholder = "<mot de passe>"> </label>
+                        <label> Email :  <br><input type="email" name="email" placeholder="<email>"> </label>
+                        <label> Mot de passe :  <br><input type="password" name="password" placeholder = "<mot de passe>"> </label>
                         
                         <button type="submit"> Connexion </button>
                         <div>

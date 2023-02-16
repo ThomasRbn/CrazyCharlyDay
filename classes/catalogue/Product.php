@@ -96,7 +96,7 @@ class Product
             $distance = $donnees['distance'];
             $latitude = $donnees['latitude'];
             $longitude = $donnees['longitude'];
-            $produit = new Product($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude);
+            $produit = new Product($id, $categorie, $nom, $prix, $poids, $description, $detail, $lieu, $distance, $latitude, $longitude, 0);
             return $produit;
         }
         return null;
