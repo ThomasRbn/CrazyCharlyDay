@@ -58,7 +58,7 @@ class RegisterAction extends Action
                         <label> Confirmer le mot de passe :  <input type="password" name="password2" placeholder = "<mot de passe>"> </label>
                         <label> Nom : <input type="text" name="nom" placeholder="<nom>"> </label>
                         <label> Prénom : <input type="text" name="prenom" placeholder="<prenom>"> </label>
-                        <button type="submit" value="validerRegister"> S'enregistrer </button>
+                        <button type="submit" value="validerRegister" name="validerRegister"> S'enregistrer </button>
                      <div>
                         <label>Vous avez déjà un compte ?</label>
                         <a href="?action=signin">Se connecter</a>
