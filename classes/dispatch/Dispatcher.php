@@ -9,6 +9,9 @@ use ccd\action\LogoutAction;
 use ccd\action\RegisterAction;
 use ccd\action\ShowCatalogAction;
 use ccd\action\ShowProductAction;
+use ccd\action\ShowUtilisateursListAction;
+use ccd\action\ShowUtilisateurAction;
+use ccd\action\ChangeUtilisateurAction;
 use ccd\action\SigninAction;
 use ccd\action\AfficherPanierAction;
 use ccd\catalogue\Catalogue;
@@ -53,6 +56,9 @@ class Dispatcher
             'register' => new RegisterAction(),
             'logout' => new LogoutAction(),
             'gestionCompte' => new GestionCompteAction(),
+            'showUtilisateurList' => new ShowUtilisateursListAction(),
+            'showUtilisateur' => new ShowUtilisateurAction(),
+            'changeUtilisateur' => new ChangeUtilisateurAction(),
             default => (isset($_SESSION['email'])) ? new ShowCatalogAction(new Catalogue()) : new SigninAction(),
         };
         try {
